@@ -4,8 +4,10 @@
 class Board {
 
 private:
-  const int val = 3: 
-  char board[val][val];
+  const int val = 3: //board size   
+  char board[val][val]; //board
+  static char cp1 = 'X'; //character player 1
+  static char cp2 = 'O'; // character player 2
 
 public:
   
@@ -19,8 +21,6 @@ public:
      { ' ', ' ', ' ' },
      { ' ', ' ', ' ' }
     };
-    char cp1 = 'X'; //character player 1
-    char cp2 = 'O'; // character player 2
   }
   
   Board(const Board& b)
@@ -73,37 +73,20 @@ public:
     return false;
   }
   
-  bool full_board()
+  bool if_full()
     /*Pre: true*/
     /*Post: return true if the board is full, false otherwise*/
   {
-    for (int i = 0
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+    for (int i = 0; i < 3; ++i) {
+      for (int j = 0; j  < 3; ++j) {
+        if (board[i][j] == ' ') return false;
+      }
+    }
+    return true;
   }
   
   //Setters
-  bool add_play(string place, bool player1)
+  void add_play(string place, bool player1)
     /*Pre: true*/
     /*Post: adds and 'X' on place if player1 = true
     or an 'O' if player1 = false*/
@@ -112,6 +95,20 @@ public:
     short j = place[0] - 48;
     if (player1) board[i][j] = cp1;
     else board[i][j] = cp2;
+  }
+  
+  //InputOutput
+  
+  void print() 
+    /*Pre: true*/
+    /*Post: the board is visualized on the output standard channel*/
+  {
+    for (int i = 0; i < 3; ++i) {
+      for (int j = 0; j  < 3; ++j) {
+        cout << board[i][j] << ' ';
+      }
+      cout << endl;
+    }
   }
   
   
