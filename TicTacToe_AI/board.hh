@@ -1,13 +1,20 @@
 #ifndef BORAD_HH
 #define BOARD_HH
 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
 class Board {
 
 private:
-  const int val = 3: //board size   
-  char board[val][val]; //board
-  static char cp1 = 'X'; //character player 1
-  static char cp2 = 'O'; // character player 2
+  //typedef vector<char> mat;
+  short val = 3;
+  vector<vector<char>> board;//(3, vector<char>(3));
+  //static char board[val][val]; //board
+  const char cp1 = 'X'; //character player 1
+  const char cp2 = 'O'; // character player 2
 
 public:
   
@@ -16,14 +23,10 @@ public:
     /*Pre: true*/
     /*Post: creates an empty board of 3 by 3*/
   {
-    board = {
-     { ' ', ' ', ' ' },
-     { ' ', ' ', ' ' },
-     { ' ', ' ', ' ' }
-    };
+    board.resize(val, vector<char>(val, ' '));
   }
   
-  Board(const Board& b)
+  Board(const vector<vector<char>>& b)
     /*Pre: b is a reglated board*/
     /*Post: the i.p. is a copy of b*/
   {
@@ -33,12 +36,13 @@ public:
   //Getters
   bool fear_move(string place) 
     /*Pre: true*/
-    /*Post: returns ture if the place is alowed, false otherwise.*/
+    /*Post: returns true if the place is alowed, false otherwise.*/
   {
+    if (place.size() != 2) return false;
     short i = place[1] - 48;
     short j = place[0] - 48;
     if (i >= 0 and i <= 2 and j >= 0 and j <= 2) {
-      if (board[i][j] == ' ') return ture;
+      if (board[i][j] == ' ') return true;
       else return false;
     }
     else return false;
@@ -46,7 +50,7 @@ public:
   
   bool end_game(bool& player1) 
     /*Pre: true*/
-    /*Post: returns ture if someone won and turns
+    /*Post: returns true if someone won and turns
     player1 to true if p1 is who won and flase otherwise*/
   {
     player1 = false;
@@ -63,11 +67,11 @@ public:
       }
     }
     if (board[0][0] == board[1][1] and board[1][1] == board[2][2]) {
-      if (board[0][k] == cp1) player1 = true;
+      if (board[1][1] == cp1) player1 = true;
       return true;
     }
     if (board[2][0] == board[1][1] and board[1][1] == board[0][2]) {
-      if (board[0][k] == cp1) player1 = true;
+      if (board[1][1] == cp1) player1 = true;
       return true;
     }
     return false;
@@ -104,15 +108,19 @@ public:
     /*Post: the board is visualized on the output standard channel*/
   {
     for (int i = 0; i < 3; ++i) {
+        cout << " --- --- ---" << endl;
       for (int j = 0; j  < 3; ++j) {
+        cout << "| ";
         cout << board[i][j] << ' ';
       }
+      cout << "| ";
       cout << endl;
     }
+    cout << " --- --- ---" << endl;
   }
   
   
-}
+};
 
 
 #endif
