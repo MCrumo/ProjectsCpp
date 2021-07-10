@@ -17,7 +17,7 @@ int main() {
                 cond = false;
             }
             else if (r1 == "n") cond = false;
-            else cout << endl << q2;
+            else cout << q2;
         }
         
         Board board;
@@ -63,10 +63,10 @@ int main() {
             ++cont;
         }
         string ans = "answ";
-        cout << "Play again?" << endl << q2;
+        cout << endl << "Play again?" << endl << q2;
         while (ans != "n" and ans != "y") {
             cin >> ans;
-            cout << " ";
+            cout << "y/n ";
         }
         if (ans == "n") playagain = false;
         

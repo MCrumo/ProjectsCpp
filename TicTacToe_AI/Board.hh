@@ -102,16 +102,23 @@ public:
   {
       bool cond = true;
       pair<int, int> coord;
-      for (int i = 0; i < 3 and cond; ++i) {
-          for (int j = 0; j < 3 and cond; ++j) {
-              if (board[i][j] == ' ') {
-                  board[i][j] = 'O';
-                  cond = false;
-                  coord.first = i;
-                  coord.second = j;
-              }
-        }
+      if (board[1][1] == ' ') {
+          board[1][1] = cp2;
+          coord.first = 1;
+          coord.second = 1;
     }
+      else {
+        for (int i = 0; i < 3 and cond; ++i) {
+            for (int j = 0; j < 3 and cond; ++j) {
+                if (board[i][j] == ' ') {
+                    board[i][j] = cp2;
+                    cond = false;
+                    coord.first = i;
+                    coord.second = j;
+                }
+            }
+        }
+      }
     return coord;
   }
   
