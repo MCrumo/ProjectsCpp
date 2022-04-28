@@ -108,7 +108,6 @@ void analize(int totalSol){
 int main(){
     initialInfo();
     int x = getSize();
-    x = 9;
     MAT board(x, COL(x));
     readBoard(board);
     printBoard(board);
